@@ -18,5 +18,4 @@ router.put("/:id", jsonParser, ctrlWrapper(validateData(schemaJoi.schema)),  con
 
 router.patch('/:id/favorite', jsonParser,  contactController.updateStatus )
 
-
 module.exports = router;
