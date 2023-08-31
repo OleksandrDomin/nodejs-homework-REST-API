@@ -14,4 +14,5 @@ const validateData = schema => {
   };
   return func;
 };
+
 module.exports = validateData;

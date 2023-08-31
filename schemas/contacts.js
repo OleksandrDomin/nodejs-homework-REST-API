@@ -1,6 +1,5 @@
 const Joi = require("joi");
 
-
 const schema = Joi.object({
   name: Joi.string()
     .required()
@@ -11,6 +10,10 @@ const schema = Joi.object({
   phone: Joi.string()
     .required()
     .messages({ "any.required": "Missing required phone file" }),
+  favorite: Joi.boolean()
+    .required()
+    .messages({ "any.required": "Missing required favorite file" }),
 });
 
-module.exports = { schema,};
+
+module.exports = { schema, };
