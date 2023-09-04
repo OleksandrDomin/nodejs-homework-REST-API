@@ -60,13 +60,14 @@ const remove = async (req, res, next) => {
 
 async function updateStatus(req, res, next) {
   const { id } = req.params;
+  console.log(req.params.id);
   const contact = {
-    name: req.body.name,
-    email: req.body.email,
-    phone: req.body.phone,
+    // name: req.body.name,
+    // email: req.body.email,
+    // phone: req.body.phone,
     favorite: req.body.favorite,
   };
-  if (!req.body || req.body.favorite === undefined) {
+  if (req.body.favorite === undefined) {
     throw HttpError(400, "Missing field favorite");
   }
   const updatedContactStatus = await Contact.findByIdAndUpdate(id, contact, {
