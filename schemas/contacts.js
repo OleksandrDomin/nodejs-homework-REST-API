@@ -16,7 +16,6 @@ const schemaJoi = Joi.object({
 const schemaJoiPatch = Joi.object({
   favorite: Joi.boolean()
     .required(),
-    // .messages({ "any.required": "Missing required favorite file" }),
 })
 
 const schemaJoiId =
