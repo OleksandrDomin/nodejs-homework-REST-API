@@ -2,9 +2,9 @@ const { HttpError } = require("../helpers/HttpError");
 
 const validatePatch = schemaJoiPatch => {
      const func = async (req, res, next) => {
-    const { name, email, phone, favorite } = req.body;
-    if (!name && !email && !phone && !favorite) {
-      next(HttpError(400, "Missing fields"));
+       const { favorite } = req.body;
+    if (favorite === undefined) {
+      next(HttpError(400, "Missing field favorite"));
     }
     const { error } = schemaJoiPatch.validate(req.body);
     if (error) {

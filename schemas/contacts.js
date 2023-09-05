@@ -14,18 +14,9 @@ const schemaJoi = Joi.object({
  
 
 const schemaJoiPatch = Joi.object({
-    name: Joi.string()
-    .required()
-    .messages({ "any.required": "Missing required name file" }),
-  email: Joi.string()
-    .required()
-    .messages({ "any.required": "Missing required email file" }),
-  phone: Joi.string()
-    .required()
-    .messages({ "any.required": "Missing required phone file" }),
   favorite: Joi.boolean()
-    .required()
-    .messages({ "any.required": "Missing required favorite file" }),
+    .required(),
+    // .messages({ "any.required": "Missing required favorite file" }),
 })
 
 const schemaJoiId =
