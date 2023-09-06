@@ -1,20 +1,23 @@
 const express = require("express");
-const ctrl = require("../../controllers/contacts");
-const ctrlWrapper  = require("../../helpers/ctrlWrapper");
-
-const  validateData = require("../../middlewares/validateData");
-const schemaContacts = require("../../schemas/contacts");
-
+const contactController = require('../../controllers/contacts')
 const router = express.Router();
+const jsonParser = express.json()
 
-router.get("/", ctrl.getAll);
+const ctrlWrapper = require("../../helpers/ctrlWrapper");
 
-router.get("/:contactId", ctrl.getById);
+const validateData = require("../../middlewares/validateData");
+const validatePatch = require("../../middlewares/validatePatch");
+const validateId = require("../../middlewares/validateId");
 
-router.post("/", ctrlWrapper(validateData(schemaContacts.schema)) , ctrl.add);
+const { schemaJoi, schemaJoiPatch, schemaJoiId} = require("../../schemas/contacts");
 
-router.put("/:contactId", ctrlWrapper(validateData(schemaContacts.schema)), ctrl.updateById);
+router.get("/", contactController.getAll);
+router.post("/", jsonParser, ctrlWrapper(validateData(schemaJoi)), contactController.create);
 
-router.delete("/:contactId", ctrl.deleteById);
+router.get("/:id", ctrlWrapper(validateId(schemaJoiId)), contactController.getById);
+router.delete("/:id", ctrlWrapper(validateId(schemaJoiId)), contactController.remove);
+router.put("/:id", ctrlWrapper(validateId(schemaJoiId)), jsonParser, ctrlWrapper(validateData(schemaJoi)),  contactController.update);
+
+router.patch('/:id/favorite', jsonParser, ctrlWrapper(validateId(schemaJoiId)), ctrlWrapper(validatePatch(schemaJoiPatch)), contactController.updateStatus )
 
 module.exports = router;

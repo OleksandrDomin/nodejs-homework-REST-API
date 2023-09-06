@@ -1,6 +1,24 @@
-const app = require('./app');
+require("dotenv").config();
+const mongoose = require("mongoose");
+const app = require("./app");
 
+const URI = process.env.DB_URI;
 
-app.listen(8080, () => {
-  console.log("Server running. Use our API on port: 8080")
-})
+async function run() {
+  try {
+     await mongoose.connect(URI);
+    console.log("Database connection successful");
+  } catch (error) {
+      console.log(error);
+      process.exit(1);
+  }
+  finally {
+    // mongoose.disconnect();
+  }
+}
+run();
+
+const PORT = process.env.URI || 3000;
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`);
+});

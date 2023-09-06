@@ -1,7 +1,6 @@
 const Joi = require("joi");
 
-
-const schema = Joi.object({
+const schemaJoi = Joi.object({
   name: Joi.string()
     .required()
     .messages({ "any.required": "Missing required name file" }),
@@ -10,7 +9,18 @@ const schema = Joi.object({
     .messages({ "any.required": "Missing required email file" }),
   phone: Joi.string()
     .required()
-    .messages({ "any.required": "Missing required phone file" }),
+    .messages({ "any.required": "Missing required phone file" })
 });
+ 
 
-module.exports = { schema,};
+const schemaJoiPatch = Joi.object({
+  favorite: Joi.boolean()
+    .required(),
+})
+
+const schemaJoiId =
+  Joi.object({
+id: Joi.string().required().regex(/^[0-9a-fA-F]{24}$/),
+})
+  
+module.exports = { schemaJoi, schemaJoiPatch, schemaJoiId };
