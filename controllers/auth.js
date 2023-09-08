@@ -57,10 +57,6 @@ async function logout(req, res, next) {
 
 async function current(req, res, next) { 
  const {email, subscription} = req.user;
-  //     const user = await User.findById(id).exec();
-  //   if (!user) {
-  //       throw HttpError(401, "Not authorized");
-  // }
   res.status(200).json({email, subscription});
 }
 
