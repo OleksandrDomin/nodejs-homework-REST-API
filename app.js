@@ -1,12 +1,17 @@
 const express = require("express");
 const cors = require("cors");
 const contactsRouter = require("./routes/api/contacts");
+const usersRouter = require("./routes/auth/auth");
+
 
 const logger = require("morgan");
 
 
 const app = express();
+
 app.use("/api/contacts", contactsRouter);
+app.use("/users", usersRouter);
+
 app.use(cors());
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
