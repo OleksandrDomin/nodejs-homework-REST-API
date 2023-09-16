@@ -9,5 +9,11 @@ const schemaJoiAuth = Joi.object({
             .messages({ "any.required": "Missing required email file" }),
 });
  
+const schemaJoiVarifyEmaile = Joi.object({
+        email: Joi.string()
+            .required()
+            .messages({ "any.required": "Missing required email file" }),
+});
+
   
-module.exports = { schemaJoiAuth};
+module.exports = { schemaJoiAuth, schemaJoiVarifyEmaile};
